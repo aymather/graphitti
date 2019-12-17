@@ -1,17 +1,15 @@
-import React from 'react';
-import { ImportGoogle } from '../lib';
-import LogAllContexts from '../Debugger/LogAllContexts';
+import React, { useState } from 'react';
 import useAuth from '../../utils/hooks/useAuth';
-import useGoogleSheets from '../../utils/hooks/useGoogleSheets';
-import { ConnectGoogleBtn } from '../lib';
 import { useHistory } from 'react-router-dom';
-import { LogoLight } from '../svg';
 import {
-    NavItem
+    Nav1,
+    Nav2
 } from './partials';
 
 
 const Index = () => {
+    const [navState, setNavState] = useState('upload');
+
     const { logoutUser } = useAuth();
     const history = useHistory();
 
@@ -20,22 +18,14 @@ const Index = () => {
         history.push('/logged-out');
     }
 
+    const toggle_nav = name => {
+        setNavState(name);
+    }
+
     return (
-        <div className='sidebar'>
-            <div className='mx-auto d-inline-block my-4'><LogoLight /></div>
-            <NavItem>
-                <p className='small'>Upload Sheet</p>
-                <ImportGoogle />
-            </NavItem>
-            <NavItem>
-                <ConnectGoogleBtn />
-            </NavItem>
-            <NavItem>
-                <LogAllContexts />
-            </NavItem>
-            <NavItem>
-                <p className='small' onClick={logout_user}>Logout</p>
-            </NavItem>
+        <div className='navbar-wrap'>
+            <Nav1 toggle_nav={toggle_nav} />
+            <Nav2 nav={navState} />
         </div>
     );
 }

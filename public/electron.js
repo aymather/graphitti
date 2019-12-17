@@ -8,13 +8,17 @@ let mainWindow;
 
 const createWindow = () => {
 	mainWindow = new BrowserWindow({
-			width: 900, 
-			height: 680,
+			show: false,
 			webPreferences: {
 				nodeIntegration: false,
 				preload: __dirname + '/preload.js'
 			}
 	});
+
+	mainWindow.maximize();
+
+	mainWindow.show();
+
 	mainWindow.loadURL(isDev ? 'http://localhost:3000' : `file://${path.join(__dirname, '../build/index.html')}`);
 
 	ipcMain.on('auth-start', async (e, user_id) => {

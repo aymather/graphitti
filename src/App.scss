@@ -1,4 +1,11 @@
-@import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Lato|Montserrat|Open+Sans&display=swap');
+
+$dark-background: rgb(11, 16, 26);
+$medium-background: #1C203D;
+$light-background: #1E2A52;
+$light-blue: #2591E4;
+$light-purple: 	#623BEF;
+
 
 * {
     margin: 0;
@@ -6,6 +13,20 @@
     box-sizing: border-box !important;
     text-decoration: none;
     font-family: 'Montserrat', sans-serif;
+}
+
+::-webkit-scrollbar {
+    width: 0px;
+    height: 0px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #333;
+    width: 5px;
+}
+
+::-webkit-scrollbar-track {
+    background: rgb(92, 92, 92);
 }
 
 #root {
@@ -17,7 +38,7 @@
 .App {
     width: 100%;
     height: 100%;
-    overflow-y: scroll;
+    overflow: hidden;
     display: flex;
 }
 
@@ -77,27 +98,81 @@
     }
 }
 
-.sidebar {
-    width: 200px;
+/* Left Navbar */
+$navbar-1-width: 75px;
+$navbar-2-width: 215px;
+$navbar-2-text-color: #ccc;
+
+.navbar-wrap {
+    display: flex;
+    flex-direction: row;
+}
+
+.navbar-1-wrap {
+    width: $navbar-1-width;
     height: 100%;
-    background-color: rgb(49, 49, 49);
-    display: flex;
-    flex-direction: column;
+    background-color: $dark-background;
 }
 
-.nav-item {
-    width: 70%;
-    height: 30px;
-    margin: 10px auto 0px auto;
-    display: flex;
-    justify-content: space-between;
-    color: #ccc;
-    transition: all 0.4s;
+.navbar-1-item {
     cursor: pointer;
+    width: 50px;
+    height: 50px;
+    margin: 14px auto 14px auto;
+    border-radius: 5px;
+    border: 1px solid rgb(150, 149, 149);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &:hover {
+        border-color: rgb(212, 211, 211);
+    }
 }
 
-.nav-item:hover {
-    color: rgb(108, 107, 107);
+.navbar-2-wrap {
+    width: $navbar-2-width;
+    height: 100%;
+    background-color: $medium-background;
+    overflow-y: scroll;
+}
+
+.nav-2-item {
+    width: 100%;
+    font-size: 14px;
+    margin: 1px auto;
+    font-family: 'Open Sans';
+    color: #ccc;
+    cursor: pointer;
+
+    &:hover {
+        .nav-2-text {
+            color: rgb(245, 245, 245);
+        }
+    }
+}
+
+.nav-2-text, .nav-2-item-title {
+    width: 80%;
+    margin: auto;
+    padding: .4rem 0;
+}
+
+.nav-2-item-title {
+    color: $navbar-2-text-color;
+    font-family: 'Lato';
+    cursor: pointer;
+
+    &:hover {
+        color: rgb(245, 245, 245);
+    }
+}
+
+.nav-2-text {
+    width: 80%;
+    margin: auto;
+    padding: .2rem 0;
+    font-family: 'Lato';
 }
 
 .sheets-list-item {
@@ -112,3 +187,89 @@
 .sheets-list-item:hover {
     background-color: rgba(204, 204, 204, 0.228);
 }
+
+/* End Left Navbar */
+
+/* Main Dashboard */
+
+.dashboard-wrap {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+}
+
+/* End Main Dashboard */
+
+/* Tabs */
+$tabs-height: 50px;
+$tabs-background-color: #333;
+
+.tabs-wrap {
+    width: 100%;
+    overflow-x: auto;
+    height: $tabs-height;
+    background-color: $tabs-background-color;
+    display: flex;
+    flex-direction: row;
+    box-shadow: 2px 2px 5px #333;
+}
+
+div.tabs-wrap::-webkit-scrollbar {
+    width: 0px;
+    height: 5px;
+}
+
+div.tabs-wrap::-webkit-scrollbar-thumb {
+    background: #333;
+    width: 5px;
+}
+
+div.tabs-wrap::-webkit-scrollbar-track {
+    background: rgb(92, 92, 92);
+}
+
+.tab-wrap {
+    width: 150px;
+    min-width: 150px;
+    background-color: rgb(44, 44, 44);
+    border-right: 1px solid rgb(29, 29, 29);
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    cursor: pointer;
+
+    &:hover {
+        .tab-close-icon {
+            color: rgb(119, 118, 118);
+
+            &:hover {
+                color: #ccc;
+            }
+        }
+    }
+}
+
+.tab-wrap-active {
+    background-color: rgb(26, 25, 25);
+
+    .tab-text {
+        color: #ccc;
+    }
+}
+
+.tab-text {
+    font-size: 14px;
+    color: rgb(119, 118, 118);
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    font-family: 'Open Sans';
+}
+
+.tab-close-icon {
+    color: transparent;
+}
+/* End Tabs */

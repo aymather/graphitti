@@ -4,7 +4,7 @@ import axios from 'axios';
 
 const useGoogleSheets = () => {
 	const [sheetsState, setSheetsState] = useContext(GoogleSheetsContext);
-	const [options, setOptions] = useState({
+	const [options] = useState({
 		headers: {
 			['x-auth-token']: window.localStorage.getItem('token')
 		}
